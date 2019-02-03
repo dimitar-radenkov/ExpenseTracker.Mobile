@@ -3,3 +3,9 @@
 ################################################################################
 
 /.vs
+/ExpenseTracker.Mobile/ExpenseTracker.Mobile/obj
+/ExpenseTracker.Mobile/ExpenseTracker.Mobile/bin/Debug/netstandard2.0
+/ExpenseTracker.Mobile/ExpenseTracker.Mobile.Android/obj
+/ExpenseTracker.Mobile/ExpenseTracker.Mobile.Android/bin/Debug
+/ExpenseTracker.Mobile/ExpenseTracker.Mobile.iOS/obj
+/ExpenseTracker.Mobile/ExpenseTracker.Mobile.iOS/bin/iPhoneSimulator/Debug

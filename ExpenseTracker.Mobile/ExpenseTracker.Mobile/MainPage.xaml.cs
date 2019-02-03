@@ -1,5 +1,5 @@
-﻿using ExpesneTracker.Mobile.Services;
-using ExpesneTracker.Mobile.ViewModels;
+﻿using ExpenseTracker.Mobile.Services;
+using ExpenseTracker.Mobile.ViewModels;
 using Xamarin.Forms;
 
 namespace ExpenseTracker.Mobile

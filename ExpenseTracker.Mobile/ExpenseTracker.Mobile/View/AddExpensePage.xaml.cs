@@ -1,7 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using ExpenseTracker.Mobile.Services;
+using ExpenseTracker.Mobile.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ExpesneTracker.Mobile.View
+namespace ExpenseTracker.Mobile.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddExpensePage : ContentPage
@@ -9,6 +11,7 @@ namespace ExpesneTracker.Mobile.View
         public AddExpensePage()
         {
             InitializeComponent();
+            this.BindingContext = new AddExpensePageViewModel(new CategoriesService());
         }
     }
 }

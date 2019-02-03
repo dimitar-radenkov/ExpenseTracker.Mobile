@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ExpesneTracker.Mobile.View.AddExpensePage">
+             x:Class="ExpenseTracker.Mobile.View.AddExpensePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Add new expense"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Entry Placeholder="Description" Keyboard="Text" Text="{Binding Description}"></Entry>
+            <Entry Placeholder="Amount" Keyboard="Numeric" Text="{Binding Amount}"></Entry>
+            <Picker ItemsSource="{Binding CategoriesList}" 
+                    ItemDisplayBinding="{Binding Name}" 
+                    Title="Select Category">
+            </Picker>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

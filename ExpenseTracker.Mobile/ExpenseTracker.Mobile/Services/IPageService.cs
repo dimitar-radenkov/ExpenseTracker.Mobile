@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace ExpesneTracker.Mobile.Services
+namespace ExpenseTracker.Mobile.Services
 {
     public interface IPageService
     {

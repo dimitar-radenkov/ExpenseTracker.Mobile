@@ -1,4 +1,6 @@
-﻿namespace ExpenseTracker.Mobile.ViewModels.Helpers
+﻿using System;
+
+namespace ExpenseTracker.Mobile.ViewModels.Helpers
 {
     public class TextUI : BaseViewModel
     {
@@ -6,12 +8,21 @@
         public string Text
         {
             get { return this.text; }
-            set { this.SetValue(ref this.text, value); }
+            set
+            {
+                var eventArgs = new ValueChangedEventArgs<string>(this.text, value);
+                if (this.SetValue(ref this.text, value))
+                {
+                    this.TextChanged?.Invoke(this, eventArgs);
+                }              
+            }
         }
+
+        public event EventHandler<ValueChangedEventArgs<string>> TextChanged;
 
         public TextUI()
         {
-            this.Text = "";
+            this.text = string.Empty;
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using ExpenseTracker.Mobile.Models;
+﻿using ExpenseTracker.Mobile.Models;
 using ExpenseTracker.Mobile.Services;
 using ExpenseTracker.Mobile.ViewModels.Helpers;
+using Xamarin.Forms;
 
 namespace ExpenseTracker.Mobile.ViewModels
 {
@@ -11,7 +11,8 @@ namespace ExpenseTracker.Mobile.ViewModels
 
         public TextUI Description { get; set; }
         public TextUI Amount { get; set; }
-        public ObservableCollection<Category> CategoriesList { get; set; }
+        public CollectionUI<Category> CategoriesList { get; set; }
+        public ButtonUI SaveButton { get; set; }
 
         public AddExpensePageViewModel(ICategoriesService categoriesService)
         {
@@ -23,8 +24,25 @@ namespace ExpenseTracker.Mobile.ViewModels
         private void Initialize()
         {
             this.Description = new TextUI();
+
             this.Amount = new TextUI();
-            this.CategoriesList = new ObservableCollection<Category>(this.categoriesService.GetCategories());
+            this.Amount.TextChanged += (s, e) => this.SaveButton.IsEnabled = !string.IsNullOrWhiteSpace(e.NewValue);
+
+            this.CategoriesList = new CollectionUI<Category>(this.categoriesService.GetCategories());
+
+            this.SaveButton = new ButtonUI(new Command(this.OnButtonSaveClick));
+            this.SaveButton.IsEnabled = false; 
+        }
+
+        private bool Validate()
+        {
+            return !string.IsNullOrWhiteSpace(this.Amount.Text) && 
+                this.CategoriesList.SelectedItem != null;
+        }
+
+        private void OnButtonSaveClick()
+        {
+
         }
     }
 }

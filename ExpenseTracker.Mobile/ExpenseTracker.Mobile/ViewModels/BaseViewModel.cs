@@ -23,7 +23,7 @@ namespace ExpenseTracker.Mobile.ViewModels
             }
 				
 			backingField = value; 
-			OnPropertyChanged(propertyName);
+			this.OnPropertyChanged(propertyName);
 
             return true;
 		}

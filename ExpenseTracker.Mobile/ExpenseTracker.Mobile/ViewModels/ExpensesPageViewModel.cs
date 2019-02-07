@@ -6,22 +6,29 @@ using ExpenseTracker.Mobile.Services;
 using ExpenseTracker.Mobile.ViewModels.Helpers;
 using ExpenseTracker.Mobile.Views;
 using Microsoft.EntityFrameworkCore;
+using Prism.Events;
+using Prism.Mvvm;
 using Xamarin.Forms;
 
 namespace ExpenseTracker.Mobile.ViewModels
 {
-    public class ExpensesPageViewModel : BaseViewModel
+    public class ExpensesPageViewModel : BindableBase
     {
         private readonly IPageService pageService;
         private readonly IDbService dbService;
+        private readonly IEventAggregator eventAggregator;
 
         public CollectionUI<Expense> ExpensesList { get; private set; }
         public ICommand AddButtonCommand { get; private set; }
 
-        public ExpensesPageViewModel(IPageService pageService, IDbService dbService)
+        public ExpensesPageViewModel(
+            IPageService pageService,
+            IDbService dbService,
+            IEventAggregator eventAggregator)
         {
             this.pageService = pageService;
             this.dbService = dbService;
+            this.eventAggregator = eventAggregator;
 
             this.Initialize();
         }

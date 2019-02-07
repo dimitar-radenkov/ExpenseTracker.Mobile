@@ -2,18 +2,19 @@
 using System.Linq;
 using ExpenseTracker.Mobile.Models;
 using ExpenseTracker.Mobile.Services;
-using ExpenseTracker.Mobile.Storage;
 using ExpenseTracker.Mobile.ViewModels.Helpers;
-using Microsoft.EntityFrameworkCore;
+using Prism.Events;
+using Prism.Mvvm;
 using Xamarin.Forms;
 
 namespace ExpenseTracker.Mobile.ViewModels
 {
-    public class AddExpensePageViewModel : BaseViewModel
+    public class AddExpensePageViewModel : BindableBase
     {
         private readonly ICategoriesService categoriesService;
         private readonly IPageService pageService;
         private readonly IDbService dbService;
+        private readonly IEventAggregator eventAggregator;
 
         public TextUI Description { get; set; }
         public TextUI Amount { get; set; }
@@ -23,11 +24,13 @@ namespace ExpenseTracker.Mobile.ViewModels
         public AddExpensePageViewModel(
             ICategoriesService categoriesService, 
             IPageService pageService,
-            IDbService dbService)
+            IDbService dbService, 
+            IEventAggregator eventAggregator)
         {
             this.categoriesService = categoriesService;
             this.pageService = pageService;
             this.dbService = dbService;
+            this.eventAggregator = eventAggregator;
 
             this.Initialize();
         }

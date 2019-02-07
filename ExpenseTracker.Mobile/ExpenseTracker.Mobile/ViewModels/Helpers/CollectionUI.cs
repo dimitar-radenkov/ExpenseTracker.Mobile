@@ -16,7 +16,7 @@ namespace ExpenseTracker.Mobile.ViewModels.Helpers
             get { return this.items; }
             set
             {
-                this.SetValue(ref this.items, value);
+                this.SetProperty(ref this.items, value);
             }
         }
 
@@ -26,7 +26,7 @@ namespace ExpenseTracker.Mobile.ViewModels.Helpers
             set
             {
                 var eventArgs = new ValueChangedEventArgs<T>(this.selectedItem, value);
-                if (this.SetValue(ref this.selectedItem, value))
+                if (this.SetProperty(ref this.selectedItem, value))
                 {
                     this.SelectedItemChanged?.Invoke(this, eventArgs);
                 }

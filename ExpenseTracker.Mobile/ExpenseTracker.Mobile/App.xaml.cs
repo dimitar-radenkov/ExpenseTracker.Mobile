@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ExpenseTracker.Mobile.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -10,7 +11,8 @@ namespace ExpenseTracker.Mobile
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            
+            MainPage = new NavigationPage(new ExpensesPage());
         }
 
         protected override void OnStart()

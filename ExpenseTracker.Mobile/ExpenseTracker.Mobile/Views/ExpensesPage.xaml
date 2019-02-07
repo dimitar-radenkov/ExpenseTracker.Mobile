@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ExpenseTracker.Mobile"
-             x:Class="ExpenseTracker.Mobile.MainPage">
+             x:Class="ExpenseTracker.Mobile.Views.ExpensesPage">
 
     <StackLayout>
-        <ListView ItemsSource="{Binding ExpensesList, Mode=TwoWay}" BackgroundColor="LightGreen"
+        <ListView ItemsSource="{Binding ExpensesList.Items, Mode=TwoWay}" BackgroundColor="LightGray"
                   HorizontalOptions="Fill" VerticalOptions="Fill">
             <ListView.ItemTemplate>
                 <DataTemplate>

@@ -33,6 +33,11 @@ namespace ExpenseTracker.Mobile.ViewModels.Helpers
             }
         }
 
+        public CollectionUI()
+            :this(new List<T>())
+        {
+        }         
+
         public CollectionUI(IEnumerable<T> items)
         {
             this.items = new ObservableCollection<T>(items);

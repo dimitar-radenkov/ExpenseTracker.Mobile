@@ -1,4 +1,5 @@
 ﻿using ExpenseTracker.Mobile.Services;
+using ExpenseTracker.Mobile.Storage;
 using ExpenseTracker.Mobile.Views;
 using Prism;
 using Prism.Ioc;
@@ -17,15 +18,15 @@ namespace ExpenseTracker.Mobile
         protected override void OnInitialized()
         {
             InitializeComponent();
-            NavigationService.NavigateAsync(nameof(ExpensesPage));
+            NavigationService.NavigateAsync(nameof(InitialPage));
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.Register<IDbService, DbService>();
+            containerRegistry.RegisterSingleton<ExpenseTrackerDbContext>();
             containerRegistry.Register<ICategoriesService, CategoriesService>();
 
-            containerRegistry.RegisterForNavigation<ExpensesPage>();
+            containerRegistry.RegisterForNavigation<InitialPage>();
             containerRegistry.RegisterForNavigation<AddExpensePage>();
         }
 

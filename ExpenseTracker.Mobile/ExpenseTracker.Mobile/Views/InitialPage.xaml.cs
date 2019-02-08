@@ -2,9 +2,9 @@
 
 namespace ExpenseTracker.Mobile.Views
 {
-    public partial class ExpensesPage : ContentPage
+    public partial class InitialPage : ContentPage
     {
-        public ExpensesPage()
+        public InitialPage()
         {
             this.InitializeComponent();
         }

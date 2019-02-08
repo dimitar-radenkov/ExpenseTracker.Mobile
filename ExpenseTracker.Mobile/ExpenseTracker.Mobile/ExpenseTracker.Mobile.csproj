@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\ExpensesPage.xaml.cs">
-      <DependentUpon>ExpensesPage.xaml</DependentUpon>
+    <Compile Update="Views\InitialPage.xaml.cs">
+      <DependentUpon>InitialPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

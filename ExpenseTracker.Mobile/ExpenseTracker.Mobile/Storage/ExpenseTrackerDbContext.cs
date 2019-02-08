@@ -6,15 +6,10 @@ namespace ExpenseTracker.Mobile.Storage
 {
     public class ExpenseTrackerDbContext : DbContext
     {
-        private readonly string filename;
+        private readonly string filename = Constants.DbFile;
 
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<Category> Categories { get; set; }
-
-        public ExpenseTrackerDbContext(string filename)
-        {
-            this.filename = filename;
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

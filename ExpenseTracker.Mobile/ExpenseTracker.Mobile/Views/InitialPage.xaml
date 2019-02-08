@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True" 
+             x:Class="ExpenseTracker.Mobile.Views.InitialPage">
+
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0">Mon</Label>
+            <Label Grid.Column="1">Tue</Label>
+            <Label Grid.Column="2">Wed</Label>
+            <Label Grid.Column="3">Thr</Label>
+            <Label Grid.Column="4">Fri</Label>
+            <Label Grid.Column="5">Sat</Label>
+            <Label Grid.Column="6">Sun</Label>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="1"></Label>
+            <Label Grid.Row="1" Grid.Column="1" Text="2"></Label>
+            <Label Grid.Row="1" Grid.Column="2" Text="3"></Label>
+            <Label Grid.Row="1" Grid.Column="3" Text="4"></Label>
+            <Label Grid.Row="1" Grid.Column="4" Text="5"></Label>
+            <Label Grid.Row="1" Grid.Column="5" Text="6"></Label>
+            <Label Grid.Row="1" Grid.Column="6" Text="7"></Label>
+        </Grid>
+        <ListView ItemsSource="{Binding ExpensesList.Items, Mode=TwoWay}" BackgroundColor="LightGray"
+                  HorizontalOptions="Fill" VerticalOptions="Fill">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding ImageUrl}" Grid.Column="0"></Image>
+                            
+                            <Label Text="{Binding Description}" FontSize="Small" FontAttributes="Bold" Grid.Column="1" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Amount}" FontSize="Small" Grid.Column="1" HorizontalOptions="End" TextColor="Red"></Label>
+                        </Grid>
+                        
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete" IsDestructive="True"></MenuItem>
+                        </ViewCell.ContextActions>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Add" Command="{Binding AddButtonCommand}"></Button>
+    </StackLayout>
+
+</ContentPage>

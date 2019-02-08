@@ -6,5 +6,7 @@ namespace ExpenseTracker.Mobile.Services
     public interface ICategoriesService
     {
         IEnumerable<Category> GetCategories();
+
+        string GetUrl(int id);
     }
 }

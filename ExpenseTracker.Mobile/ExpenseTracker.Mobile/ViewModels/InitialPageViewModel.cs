@@ -1,9 +1,10 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using ExpenseTracker.Mobile.Events;
+using ExpenseTracker.Mobile.Extensions;
 using ExpenseTracker.Mobile.Models;
 using ExpenseTracker.Mobile.Services;
+using ExpenseTracker.Mobile.Storage;
 using ExpenseTracker.Mobile.ViewModels.Helpers;
 using ExpenseTracker.Mobile.Views;
 using Microsoft.EntityFrameworkCore;
@@ -14,22 +15,25 @@ using Xamarin.Forms;
 
 namespace ExpenseTracker.Mobile.ViewModels
 {
-    public class ExpensesPageViewModel : BindableBase
+    public class InitialPageViewModel : BindableBase
     {
+        private readonly ExpenseTrackerDbContext db;
+        private readonly ICategoriesService categoriesService;
         private readonly INavigationService navigationService;
-        private readonly IDbService dbService;
         private readonly IEventAggregator eventAggregator;
 
         public CollectionUI<Expense> ExpensesList { get; private set; }
         public ICommand AddButtonCommand { get; private set; }
 
-        public ExpensesPageViewModel(
+        public InitialPageViewModel(
+            ExpenseTrackerDbContext db,
+            ICategoriesService categoriesService,
             INavigationService navigationService,
-            IDbService dbService,
             IEventAggregator eventAggregator)
         {
+            this.db = db;
+            this.categoriesService = categoriesService;
             this.navigationService = navigationService;
-            this.dbService = dbService;
             this.eventAggregator = eventAggregator;
 
             this.Initialize();
@@ -43,15 +47,24 @@ namespace ExpenseTracker.Mobile.ViewModels
         private void Initialize()
         {
             this.eventAggregator
-                .GetEvent<TestEvent>()
-                .Subscribe(x => { int a = 4; });
+                .GetEvent<ExpenseAddedEvent>()
+                .Subscribe(async () => await this.RefreshAsync() );
 
-            var expenses = this.dbService.GetContext().Expenses
-                .AsNoTracking()
-                .ToList();
-
-            this.ExpensesList = new CollectionUI<Expense>(expenses);
+            this.ExpensesList = new CollectionUI<Expense>();
             this.AddButtonCommand = new Command(async() => await OnButtonAddClicked());
+
+            this.RefreshAsync().ConfigureAwait(false);
+        }
+
+        private async Task RefreshAsync()
+        {
+            var expenses = await this.db.Expenses.AsNoTracking()
+                .ToListAsync();
+
+            expenses.ForEach(x => x.ImageUrl = this.categoriesService.GetUrl(x.CategoryId));
+
+            this.ExpensesList.Items.Clear();
+            this.ExpensesList.Items.AddRange(expenses);
         }
     }
 }

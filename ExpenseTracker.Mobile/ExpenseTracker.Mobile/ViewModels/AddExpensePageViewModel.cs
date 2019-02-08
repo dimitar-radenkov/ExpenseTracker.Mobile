@@ -3,6 +3,7 @@ using System.Linq;
 using ExpenseTracker.Mobile.Events;
 using ExpenseTracker.Mobile.Models;
 using ExpenseTracker.Mobile.Services;
+using ExpenseTracker.Mobile.Storage;
 using ExpenseTracker.Mobile.ViewModels.Helpers;
 using Prism.Events;
 using Prism.Mvvm;
@@ -13,9 +14,9 @@ namespace ExpenseTracker.Mobile.ViewModels
 {
     public class AddExpensePageViewModel : BindableBase
     {
+        private readonly ExpenseTrackerDbContext db;
         private readonly ICategoriesService categoriesService;
         private readonly INavigationService navigationService;
-        private readonly IDbService dbService;
         private readonly IEventAggregator eventAggregator;
 
         public TextUI Description { get; set; }
@@ -24,14 +25,14 @@ namespace ExpenseTracker.Mobile.ViewModels
         public ButtonUI SaveButton { get; set; }
 
         public AddExpensePageViewModel(
+            ExpenseTrackerDbContext db,
             ICategoriesService categoriesService,
             INavigationService navigationService,
-            IDbService dbService, 
             IEventAggregator eventAggregator)
         {
+            this.db = db;
             this.categoriesService = categoriesService;
             this.navigationService = navigationService;
-            this.dbService = dbService;
             this.eventAggregator = eventAggregator;
 
             this.Initialize();
@@ -61,11 +62,14 @@ namespace ExpenseTracker.Mobile.ViewModels
                 CategoryId = this.CategoriesList.SelectedItem.Id,
             };
 
-            this.dbService.GetContext().Expenses.Add(expense);
-            await this.dbService.GetContext().SaveChangesAsync();
+            this.db.Expenses.Add(expense);
+            this.db.SaveChanges();
+
             await this.navigationService.GoBackAsync();
 
-            this.eventAggregator.GetEvent<TestEvent>().Publish("test");
+            this.eventAggregator
+                .GetEvent<ExpenseAddedEvent>()
+                .Publish();
         }
     }
 }

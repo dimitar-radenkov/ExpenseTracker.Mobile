@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
+using ExpenseTracker.Mobile.Events;
 using ExpenseTracker.Mobile.Models;
 using ExpenseTracker.Mobile.Services;
 using ExpenseTracker.Mobile.ViewModels.Helpers;
 using Prism.Events;
 using Prism.Mvvm;
+using Prism.Navigation;
 using Xamarin.Forms;
 
 namespace ExpenseTracker.Mobile.ViewModels
@@ -12,7 +14,7 @@ namespace ExpenseTracker.Mobile.ViewModels
     public class AddExpensePageViewModel : BindableBase
     {
         private readonly ICategoriesService categoriesService;
-        private readonly IPageService pageService;
+        private readonly INavigationService navigationService;
         private readonly IDbService dbService;
         private readonly IEventAggregator eventAggregator;
 
@@ -22,13 +24,13 @@ namespace ExpenseTracker.Mobile.ViewModels
         public ButtonUI SaveButton { get; set; }
 
         public AddExpensePageViewModel(
-            ICategoriesService categoriesService, 
-            IPageService pageService,
+            ICategoriesService categoriesService,
+            INavigationService navigationService,
             IDbService dbService, 
             IEventAggregator eventAggregator)
         {
             this.categoriesService = categoriesService;
-            this.pageService = pageService;
+            this.navigationService = navigationService;
             this.dbService = dbService;
             this.eventAggregator = eventAggregator;
 
@@ -36,7 +38,7 @@ namespace ExpenseTracker.Mobile.ViewModels
         }
 
         private void Initialize()
-        {
+        {         
             this.Description = new TextUI();
 
             this.Amount = new TextUI();
@@ -61,7 +63,9 @@ namespace ExpenseTracker.Mobile.ViewModels
 
             this.dbService.GetContext().Expenses.Add(expense);
             await this.dbService.GetContext().SaveChangesAsync();
-            await this.pageService.PopAsync();
+            await this.navigationService.GoBackAsync();
+
+            this.eventAggregator.GetEvent<TestEvent>().Publish("test");
         }
     }
 }

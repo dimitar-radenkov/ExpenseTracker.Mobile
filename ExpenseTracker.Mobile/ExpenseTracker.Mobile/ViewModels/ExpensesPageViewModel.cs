@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ExpenseTracker.Mobile.Events;
 using ExpenseTracker.Mobile.Models;
 using ExpenseTracker.Mobile.Services;
 using ExpenseTracker.Mobile.ViewModels.Helpers;
@@ -8,13 +9,14 @@ using ExpenseTracker.Mobile.Views;
 using Microsoft.EntityFrameworkCore;
 using Prism.Events;
 using Prism.Mvvm;
+using Prism.Navigation;
 using Xamarin.Forms;
 
 namespace ExpenseTracker.Mobile.ViewModels
 {
     public class ExpensesPageViewModel : BindableBase
     {
-        private readonly IPageService pageService;
+        private readonly INavigationService navigationService;
         private readonly IDbService dbService;
         private readonly IEventAggregator eventAggregator;
 
@@ -22,11 +24,11 @@ namespace ExpenseTracker.Mobile.ViewModels
         public ICommand AddButtonCommand { get; private set; }
 
         public ExpensesPageViewModel(
-            IPageService pageService,
+            INavigationService navigationService,
             IDbService dbService,
             IEventAggregator eventAggregator)
         {
-            this.pageService = pageService;
+            this.navigationService = navigationService;
             this.dbService = dbService;
             this.eventAggregator = eventAggregator;
 
@@ -35,11 +37,15 @@ namespace ExpenseTracker.Mobile.ViewModels
 
         private async Task OnButtonAddClicked()
         {
-            await this.pageService.PushAsync(new AddExpensePage());
+            await this.navigationService.NavigateAsync(nameof(AddExpensePage));
         }
 
         private void Initialize()
         {
+            this.eventAggregator
+                .GetEvent<TestEvent>()
+                .Subscribe(x => { int a = 4; });
+
             var expenses = this.dbService.GetContext().Expenses
                 .AsNoTracking()
                 .ToList();

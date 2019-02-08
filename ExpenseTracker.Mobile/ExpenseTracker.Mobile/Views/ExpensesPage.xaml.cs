@@ -1,6 +1,4 @@
-﻿using ExpenseTracker.Mobile.Services;
-using ExpenseTracker.Mobile.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace ExpenseTracker.Mobile.Views
 {
@@ -9,9 +7,6 @@ namespace ExpenseTracker.Mobile.Views
         public ExpensesPage()
         {
             this.InitializeComponent();
-            this.BindingContext = new ExpensesPageViewModel(
-                new PageService(), 
-                new DbService());
         }
     }
 }

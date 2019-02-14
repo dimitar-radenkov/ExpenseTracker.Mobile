@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpenseTracker.Mobile.Controls.CalendarView">
+    <ContentView.GestureRecognizers>
+        <SwipeGestureRecognizer Direction="Up" Swiped="OnSwipeUp"></SwipeGestureRecognizer>
+        <SwipeGestureRecognizer Direction="Down" Swiped="OnSiteDown"></SwipeGestureRecognizer>
+    </ContentView.GestureRecognizers>
+    <ContentView.Resources>
+        <Style TargetType="Label" x:Key="dayName">
+            <Setter Property="FontSize" Value="10"></Setter>
+        </Style>
+
+        <Style TargetType="Label" x:Key="date">
+            <Setter Property="FontSize" Value="8"></Setter>
+        </Style>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Style="{StaticResource dayName}">Mon</Label>
+            <Label Grid.Column="1" Style="{StaticResource dayName}">Tue</Label>
+            <Label Grid.Column="2" Style="{StaticResource dayName}">Wed</Label>
+            <Label Grid.Column="3" Style="{StaticResource dayName}">Thr</Label>
+            <Label Grid.Column="4" Style="{StaticResource dayName}">Fri</Label>
+            <Label Grid.Column="5" Style="{StaticResource dayName}">Sat</Label>
+            <Label Grid.Column="6" Style="{StaticResource dayName}">Sun</Label>
+
+
+            <Label Grid.Row="1" Grid.Column="0" Text="1" Style="{StaticResource date}"></Label>
+            <Label Grid.Row="1" Grid.Column="1" Text="2" Style="{StaticResource date}"></Label>
+            <Label Grid.Row="1" Grid.Column="2" Text="3" Style="{StaticResource date}"></Label>
+            <Label Grid.Row="1" Grid.Column="3" Text="4" Style="{StaticResource date}"></Label>
+            <Label Grid.Row="1" Grid.Column="4" Text="5" Style="{StaticResource date}"></Label>
+            <Label Grid.Row="1" Grid.Column="5" Text="6" Style="{StaticResource date}"></Label>
+            <Label Grid.Row="1" Grid.Column="6" Text="7" Style="{StaticResource date}"></Label>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

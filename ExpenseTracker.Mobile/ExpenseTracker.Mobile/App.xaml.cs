@@ -17,8 +17,8 @@ namespace ExpenseTracker.Mobile
 
         protected override void OnInitialized()
         {
-            InitializeComponent();
-            NavigationService.NavigateAsync(nameof(InitialPage));
+            this.InitializeComponent();
+            this.NavigationService.NavigateAsync(nameof(InitialPage));
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

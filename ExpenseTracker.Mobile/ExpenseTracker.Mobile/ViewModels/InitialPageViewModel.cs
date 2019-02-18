@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ExpenseTracker.Mobile.Events;
 using ExpenseTracker.Mobile.Extensions;
@@ -18,20 +19,24 @@ namespace ExpenseTracker.Mobile.ViewModels
     public class InitialPageViewModel : BindableBase
     {
         private readonly ExpenseTrackerDbContext db;
+        private readonly IDateTimeService dateTimeService;
         private readonly ICategoriesService categoriesService;
         private readonly INavigationService navigationService;
         private readonly IEventAggregator eventAggregator;
 
+        public CollectionUI<WeekControlViewModel> Weeks { get; private set; }
         public CollectionUI<Expense> ExpensesList { get; private set; }
         public ICommand AddButtonCommand { get; private set; }
 
         public InitialPageViewModel(
             ExpenseTrackerDbContext db,
+            IDateTimeService dateTimeService,
             ICategoriesService categoriesService,
             INavigationService navigationService,
             IEventAggregator eventAggregator)
         {
             this.db = db;
+            this.dateTimeService = dateTimeService;
             this.categoriesService = categoriesService;
             this.navigationService = navigationService;
             this.eventAggregator = eventAggregator;

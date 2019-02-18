@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace ExpenseTracker.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Calendar : ContentView
+	public partial class WeekControl : ContentView
 	{
-		public Calendar()
+		public WeekControl()
 		{
 			this.InitializeComponent();
         }

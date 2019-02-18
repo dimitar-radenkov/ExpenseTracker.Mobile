@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Behaviors.Forms" Version="1.4.0" />
+    <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.1" />
@@ -23,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\Calendar.xaml.cs">
-      <DependentUpon>Calendar.xaml</DependentUpon>
+    <Compile Update="Views\WeekControl.xaml.cs">
+      <DependentUpon>WeekControl.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\InitialPage.xaml.cs">
       <DependentUpon>InitialPage.xaml</DependentUpon>
@@ -32,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\Calendar.xaml">
+    <EmbeddedResource Update="Views\WeekControl.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

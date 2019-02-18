@@ -3,7 +3,7 @@ using Prism.Mvvm;
 
 namespace ExpenseTracker.Mobile.ViewModels.Helpers
 {
-    public class TextUI : BindableBase
+    public class TextUI : BaseUI
     {
         private string text;
         public string Text

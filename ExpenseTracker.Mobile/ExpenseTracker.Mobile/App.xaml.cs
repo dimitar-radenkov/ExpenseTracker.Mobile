@@ -25,6 +25,7 @@ namespace ExpenseTracker.Mobile
         {
             containerRegistry.RegisterSingleton<ExpenseTrackerDbContext>();
             containerRegistry.Register<ICategoriesService, CategoriesService>();
+            containerRegistry.Register<IDateTimeService, DateTimeService>();
 
             containerRegistry.RegisterForNavigation<InitialPage>();
             containerRegistry.RegisterForNavigation<AddExpensePage>();

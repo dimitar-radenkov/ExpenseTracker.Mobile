@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\MonthControl.xaml.cs">
-      <DependentUpon>MonthControl.xaml</DependentUpon>
+    <Compile Update="Views\CalendarControl.xaml.cs">
+      <DependentUpon>CalendarControl.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\InitialPage.xaml.cs">
       <DependentUpon>InitialPage.xaml</DependentUpon>
@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\MonthControl.xaml">
+    <EmbeddedResource Update="Views\CalendarControl.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

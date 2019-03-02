@@ -52,7 +52,7 @@ namespace ExpenseTracker.Mobile.ViewModels
                 .Subscribe(async () => await this.RefreshAsync() );
 
             this.ExpensesList = new CollectionUI<Expense>();
-            this.AddButtonCommand = new Command(async() => await OnButtonAddClicked());
+            this.AddButtonCommand = new Command(async() => await this.OnButtonAddClicked());
 
             this.RefreshAsync().ConfigureAwait(false);
         }

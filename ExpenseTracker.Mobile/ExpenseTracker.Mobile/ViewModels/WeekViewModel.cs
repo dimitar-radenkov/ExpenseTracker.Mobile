@@ -8,24 +8,24 @@ using Xamarin.Forms;
 
 namespace ExpenseTracker.Mobile.ViewModels
 {
-
     public class WeekViewModel
     {
-        private Dictionary<DayOfWeek, TextUI> days;
+        private Dictionary<DayOfWeek, DateUI> days;
         private readonly IDateTimeService dateTimeService;
 
+        public EventHandler<DateTime> SelectedDateChanged;
         public ICommand DayClickedCommand { get; set; }
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public TextUI Mon { get; set; }
-        public TextUI Tue { get; set; }
-        public TextUI Wed { get; set; }
-        public TextUI Thu { get; set; }
-        public TextUI Fri { get; set; }
-        public TextUI Sat { get; set; }
-        public TextUI Sun { get; set; }
+        public DateUI Mon { get; set; }
+        public DateUI Tue { get; set; }
+        public DateUI Wed { get; set; }
+        public DateUI Thu { get; set; }
+        public DateUI Fri { get; set; }
+        public DateUI Sat { get; set; }
+        public DateUI Sun { get; set; }
 
         public WeekViewModel(
             IDateTimeService dateTimeService, 
@@ -38,17 +38,20 @@ namespace ExpenseTracker.Mobile.ViewModels
             foreach (var date in dates)
             {
                 this.days[date.DayOfWeek].Text = date.Day.ToString();
+                this.days[date.DayOfWeek].DateTime = date;
 
+                //this month
                 if (date.Month != this.dateTimeService.UtcNow.Month)
                 {
                     this.days[date.DayOfWeek].Opacity = 0.6;
                 }
 
+                //today
                 if (date.Day == this.dateTimeService.UtcNow.Day &&
                     date.Month == this.dateTimeService.UtcNow.Month && 
                     date.Year == this.dateTimeService.UtcNow.Year)
                 {
-                    this.days[date.DayOfWeek].TextColor = Color.Blue;
+                    this.days[date.DayOfWeek].TextColor = Color.DarkRed;
                 }
             }
 
@@ -58,15 +61,15 @@ namespace ExpenseTracker.Mobile.ViewModels
 
         private void Initialize()
         {
-            this.Mon = new TextUI();
-            this.Tue = new TextUI();
-            this.Wed = new TextUI();
-            this.Thu = new TextUI();
-            this.Fri = new TextUI();
-            this.Sat = new TextUI(); 
-            this.Sun = new TextUI();
+            this.Mon = new DateUI();
+            this.Tue = new DateUI();
+            this.Wed = new DateUI();
+            this.Thu = new DateUI();
+            this.Fri = new DateUI();
+            this.Sat = new DateUI(); 
+            this.Sun = new DateUI();
 
-            this.days = new Dictionary<DayOfWeek, TextUI>()
+            this.days = new Dictionary<DayOfWeek, DateUI>()
             {
                 {  DayOfWeek.Monday, this.Mon },
                 {  DayOfWeek.Tuesday, this.Tue },
@@ -82,10 +85,18 @@ namespace ExpenseTracker.Mobile.ViewModels
 
         private void OnDayClicked(object obj)
         {
-            if (obj is TextUI textUI)
+            if (obj is DateUI dateUI)
             {
-                this.days.Values.ToList().ForEach( x => x.Background = Color.Transparent);
-                textUI.Background = Color.LightGreen;
+                this.days.Values.ToList().ForEach(x => 
+                {
+                    x.Background = Color.Transparent;
+                    x.TextColor = Color.Black;
+                });
+
+                dateUI.Background = Color.Blue;
+                dateUI.TextColor = Color.White;
+
+                this.SelectedDateChanged?.Invoke(this, dateUI.DateTime);
             }
         }
     }

@@ -6,7 +6,7 @@
              prism:ViewModelLocator.AutowireViewModel="True" 
              x:Class="ExpenseTracker.Mobile.Views.InitialPage">
     <StackLayout>
-        <local:MonthControl></local:MonthControl>
+        <local:CalendarControl></local:CalendarControl>
         <ListView ItemsSource="{Binding ExpensesList.Items, Mode=TwoWay}" BackgroundColor="LightGray"
                   HorizontalOptions="Fill" VerticalOptions="Fill">
             <ListView.ItemTemplate>

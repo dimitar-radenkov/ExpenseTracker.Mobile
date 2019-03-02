@@ -42,4 +42,9 @@ namespace ExpenseTracker.Mobile.ViewModels.Helpers
             this.opacity = 1;
         }
     }
+
+    public class DateUI : TextUI
+    {
+        public DateTime DateTime { get; set; }
+    }
 }

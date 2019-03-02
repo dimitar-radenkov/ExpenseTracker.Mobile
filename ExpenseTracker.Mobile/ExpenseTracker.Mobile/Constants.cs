@@ -1,4 +1,6 @@
-﻿namespace ExpenseTracker.Mobile
+﻿using Xamarin.Forms;
+
+namespace ExpenseTracker.Mobile
 {
     public class Constants
     {

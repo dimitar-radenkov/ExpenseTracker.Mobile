@@ -1,4 +1,5 @@
-﻿using ExpenseTracker.Mobile.Services;
+﻿using ExpenseTracker.Mobile.Factories;
+using ExpenseTracker.Mobile.Services;
 using ExpenseTracker.Mobile.Storage;
 using ExpenseTracker.Mobile.Views;
 using Prism;
@@ -26,6 +27,7 @@ namespace ExpenseTracker.Mobile
             containerRegistry.RegisterSingleton<ExpenseTrackerDbContext>();
             containerRegistry.Register<ICategoriesService, CategoriesService>();
             containerRegistry.Register<IDateTimeService, DateTimeService>();
+            containerRegistry.Register<IViewModelsFactory, ViewModelsFactory>();
 
             containerRegistry.RegisterForNavigation<InitialPage>();
             containerRegistry.RegisterForNavigation<AddExpensePage>();

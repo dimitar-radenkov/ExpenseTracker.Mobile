@@ -4,8 +4,8 @@
              xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              x:Class="ExpenseTracker.Mobile.Views.CalendarControl"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True" 
-             HeightRequest="50">
+             prism:ViewModelLocator.AutowireViewModel="True">
+    
     <ContentView.Resources>
         <Style TargetType="Label" x:Key="dayName">
             <Setter Property="FontSize" Value="10"></Setter>
@@ -18,11 +18,12 @@
             <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
         </Style>
     </ContentView.Resources>
+    
     <ContentView.Content>
 
         <StackLayout>
             <Label HorizontalTextAlignment="Center"
-                   HorizontalOptions="Center" HeightRequest="15"
+                   HorizontalOptions="Center" 
                    Text="{Binding Month.Text}" FontSize="12"></Label>
 
             <controls:CarouselViewControl Orientation="Horizontal" InterPageSpacing="10" HeightRequest="35"
@@ -33,7 +34,6 @@
                     <DataTemplate>
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
@@ -47,15 +47,15 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                      
-                            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource dayName}">Mon</Label>
-                            <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource dayName}">Tue</Label>
-                            <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource dayName}">Wed</Label>
-                            <Label Grid.Row="1" Grid.Column="3" Style="{StaticResource dayName}">Thr</Label>
-                            <Label Grid.Row="1" Grid.Column="4" Style="{StaticResource dayName}">Fri</Label>
-                            <Label Grid.Row="1" Grid.Column="5" Style="{StaticResource dayName}">Sat</Label>
-                            <Label Grid.Row="1" Grid.Column="6" Style="{StaticResource dayName}">Sun</Label>
+                            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource dayName}">Mon</Label>
+                            <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource dayName}">Tue</Label>
+                            <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource dayName}">Wed</Label>
+                            <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource dayName}">Thr</Label>
+                            <Label Grid.Row="0" Grid.Column="4" Style="{StaticResource dayName}">Fri</Label>
+                            <Label Grid.Row="0" Grid.Column="5" Style="{StaticResource dayName}">Sat</Label>
+                            <Label Grid.Row="0" Grid.Column="6" Style="{StaticResource dayName}">Sun</Label>
 
-                            <Label Grid.Row="2" Grid.Column="0" 
+                            <Label Grid.Row="1" Grid.Column="0" 
                                    Text="{Binding Mon.Text}"  BackgroundColor="{Binding Mon.Background}" TextColor="{Binding Mon.TextColor}" Opacity="{Binding Mon.Opacity}"                              
                                    Style="{StaticResource date}">
                                 <Label.GestureRecognizers>
@@ -64,7 +64,7 @@
                                 </Label.GestureRecognizers>
                             </Label>
 
-                            <Label Grid.Row="2" Grid.Column="1" 
+                            <Label Grid.Row="1" Grid.Column="1" 
                                    Text="{Binding Tue.Text}" BackgroundColor="{Binding Tue.Background}" TextColor="{Binding Tue.TextColor}" Opacity="{Binding Tue.Opacity}"    
                                    Style="{StaticResource date}">
                                 <Label.GestureRecognizers>
@@ -73,7 +73,7 @@
                                 </Label.GestureRecognizers>
                             </Label>
 
-                            <Label Grid.Row="2" Grid.Column="2" 
+                            <Label Grid.Row="1" Grid.Column="2" 
                                    Text="{Binding Wed.Text}" BackgroundColor="{Binding Wed.Background}" TextColor="{Binding Wed.TextColor}" Opacity="{Binding Wed.Opacity}"
                                    Style="{StaticResource date}">
                                 <Label.GestureRecognizers>
@@ -82,7 +82,7 @@
                                 </Label.GestureRecognizers>
                             </Label>
 
-                            <Label Grid.Row="2" Grid.Column="3" 
+                            <Label Grid.Row="1" Grid.Column="3" 
                                    Text="{Binding Thu.Text}" BackgroundColor="{Binding Thu.Background}" TextColor="{Binding Thu.TextColor}" Opacity="{Binding Thu.Opacity}"
                                    Style="{StaticResource date}">
                                 <Label.GestureRecognizers>
@@ -91,7 +91,7 @@
                                 </Label.GestureRecognizers>
                             </Label>
 
-                            <Label Grid.Row="2" Grid.Column="4"
+                            <Label Grid.Row="1" Grid.Column="4"
                                    Text="{Binding Fri.Text}" BackgroundColor="{Binding Fri.Background}" TextColor="{Binding Fri.TextColor}" Opacity="{Binding Fri.Opacity}"
                                    Style="{StaticResource date}">
                                 <Label.GestureRecognizers>
@@ -100,7 +100,7 @@
                                 </Label.GestureRecognizers>
                             </Label>
 
-                            <Label Grid.Row="2" Grid.Column="5" 
+                            <Label Grid.Row="1" Grid.Column="5" 
                                    Text="{Binding Sat.Text}" BackgroundColor="{Binding Sat.Background}" TextColor="{Binding Sat.TextColor}" Opacity="{Binding Sat.Opacity}"
                                    Style="{StaticResource date}">
                                 <Label.GestureRecognizers>
@@ -109,7 +109,7 @@
                                 </Label.GestureRecognizers>
                             </Label>
 
-                            <Label Grid.Row="2" Grid.Column="6"
+                            <Label Grid.Row="1" Grid.Column="6"
                                    Text="{Binding Sun.Text}" BackgroundColor="{Binding Sun.Background}" TextColor="{Binding Sun.TextColor}" Opacity="{Binding Sun.Opacity}"
                                    Style="{StaticResource date}">
                                 <Label.GestureRecognizers>

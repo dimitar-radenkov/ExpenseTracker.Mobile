@@ -30,7 +30,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Add" Command="{Binding AddButtonCommand}"></Button>
+        <Button Text="Add" Command="{Binding AddButton.Command}"></Button>
     </StackLayout>
 
 </ContentPage>

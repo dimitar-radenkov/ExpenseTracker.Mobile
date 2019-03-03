@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Threading.Tasks;
 using ExpenseTracker.Mobile.Events;
 using ExpenseTracker.Mobile.Extensions;
 using ExpenseTracker.Mobile.Models;
@@ -24,7 +22,7 @@ namespace ExpenseTracker.Mobile.ViewModels
         private readonly IEventAggregator eventAggregator;
 
         public CollectionUI<Expense> ExpensesList { get; private set; }
-        public ICommand AddButtonCommand { get; private set; }
+        public ButtonUI AddButton { get; private set; }
 
         public InitialPageViewModel(
             ExpenseTrackerDbContext db,
@@ -52,9 +50,9 @@ namespace ExpenseTracker.Mobile.ViewModels
                 .Subscribe(async () => await this.RefreshAsync() );
 
             this.ExpensesList = new CollectionUI<Expense>();
-            this.AddButtonCommand = new Command(async() => await this.OnButtonAddClicked());
+            this.AddButton = new ButtonUI(new Command(async () => await this.OnButtonAddClicked()));
 
-            this.RefreshAsync().ConfigureAwait(false);
+            this.RefreshAsync();
         }
 
         private async Task RefreshAsync()

@@ -8,7 +8,7 @@ namespace ExpenseTracker.Mobile.Views
     {
         public AddExpensePage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

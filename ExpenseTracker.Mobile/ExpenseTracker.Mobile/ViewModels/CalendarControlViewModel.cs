@@ -42,17 +42,17 @@ namespace ExpenseTracker.Mobile.ViewModels
 
         private void Initialize()
         {
-            this.Month = new TextUI();
+            this.Month = new TextUI() { Text = this.dateTimeService.UtcNow.GetMonth()  };
 
             var weekDates = this.GetCurrentWeek();
 
-            var prevWeek = this.viewModelsFactory.Create(weekDates.Select(x => x.AddDays(-WeekDaysCount)));
+            var prevWeek = this.viewModelsFactory.Create(weekDates.Select(x => x.AddDays(-WeekDaysCount)).ToList());
             prevWeek.SelectedDateChanged += this.OnSelectedDateChanged;
 
             var currentWeek = this.viewModelsFactory.Create(weekDates);
             currentWeek.SelectedDateChanged += this.OnSelectedDateChanged;
 
-            var nextWeek = this.viewModelsFactory.Create(weekDates.Select(x => x.AddDays(WeekDaysCount)));
+            var nextWeek = this.viewModelsFactory.Create(weekDates.Select(x => x.AddDays(WeekDaysCount)).ToList());
             nextWeek.SelectedDateChanged += this.OnSelectedDateChanged;
 
             this.Weeks = new CollectionUI<WeekViewModel>(new List<WeekViewModel>
@@ -98,6 +98,7 @@ namespace ExpenseTracker.Mobile.ViewModels
                 var weekVM = this.viewModelsFactory.Create(prevWeek);
                 weekVM.SelectedDateChanged += this.OnSelectedDateChanged;
                 weekVM.DayClickedCommand.Execute(weekVM.Mon);
+
                 this.Weeks.Items.Add(weekVM);
             }
         }
@@ -107,9 +108,11 @@ namespace ExpenseTracker.Mobile.ViewModels
             var weekDays = new SortedSet<DateTime>();
             var today = this.dateTimeService.UtcNow;
 
+            weekDays.Add(today);
+
             //get prev days till the begining of the week
-            DateTime prevDate = today;
-            while (prevDate.DayOfWeek != DayOfWeek.Sunday)
+            DateTime prevDate = today.AddDays(-1);
+            while (prevDate.DayOfWeek > DayOfWeek.Sunday)
             {
                 weekDays.Add(prevDate);
                 prevDate = prevDate.AddDays(-1);
@@ -117,7 +120,7 @@ namespace ExpenseTracker.Mobile.ViewModels
 
             //get next days till the end of week
             DateTime nextDate = today.AddDays(1);
-            while (nextDate.DayOfWeek != DayOfWeek.Monday)
+            while (nextDate.DayOfWeek < DayOfWeek.Sunday)
             {
                 weekDays.Add(nextDate);
                 nextDate = nextDate.AddDays(1);

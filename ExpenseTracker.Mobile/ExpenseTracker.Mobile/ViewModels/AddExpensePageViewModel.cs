@@ -17,8 +17,10 @@ namespace ExpenseTracker.Mobile.ViewModels
         private readonly ExpenseTrackerDbContext db;
         private readonly ICategoriesService categoriesService;
         private readonly INavigationService navigationService;
+        private readonly IDateTimeService dateTimeService;
         private readonly IEventAggregator eventAggregator;
 
+        public DateUI SelectedDate { get; set; }
         public TextUI Description { get; set; }
         public TextUI Amount { get; set; }
         public CollectionUI<Category> CategoriesList { get; set; }
@@ -28,18 +30,21 @@ namespace ExpenseTracker.Mobile.ViewModels
             ExpenseTrackerDbContext db,
             ICategoriesService categoriesService,
             INavigationService navigationService,
+            IDateTimeService dateTimeService,
             IEventAggregator eventAggregator)
         {
             this.db = db;
             this.categoriesService = categoriesService;
             this.navigationService = navigationService;
+            this.dateTimeService = dateTimeService;
             this.eventAggregator = eventAggregator;
 
             this.Initialize();
         }
 
         private void Initialize()
-        {         
+        {
+            this.SelectedDate = new DateUI();
             this.Description = new TextUI();
 
             this.Amount = new TextUI();
@@ -58,7 +63,8 @@ namespace ExpenseTracker.Mobile.ViewModels
             {
                 Description = this.Description.Text,
                 Amount = decimal.Parse(this.Amount.Text),
-                CreationDate = DateTime.UtcNow,
+                CreationDate = this.dateTimeService.UtcNow,
+                ExecutionDate = this.dateTimeService.UtcNow,
                 CategoryId = this.CategoriesList.SelectedItem.Id,
             };
 

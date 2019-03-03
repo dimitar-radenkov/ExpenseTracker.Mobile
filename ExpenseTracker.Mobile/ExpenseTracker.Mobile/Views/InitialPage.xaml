@@ -18,7 +18,7 @@
                                 <ColumnDefinition Width="5*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Image Source="{Binding ImageUrl}" Grid.Column="0"></Image>                         
+                            <Image Source="{Binding ImageUrl}" Grid.Column="0" WidthRequest="25" HeightRequest="25"></Image>                         
                             <Label Text="{Binding Description}" FontSize="Small" FontAttributes="Bold" Grid.Column="1" HorizontalOptions="Start"/>
                             <Label Text="{Binding Amount}" FontSize="Small" Grid.Column="1" HorizontalOptions="End" TextColor="Red"></Label>
                         </Grid>

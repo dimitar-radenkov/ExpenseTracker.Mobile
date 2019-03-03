@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using ExpenseTracker.Mobile.Events;
 using ExpenseTracker.Mobile.Extensions;
 using ExpenseTracker.Mobile.Factories;
 using ExpenseTracker.Mobile.Services;
 using ExpenseTracker.Mobile.ViewModels.Helpers;
+using Prism.Events;
 using Prism.Mvvm;
 using Xamarin.Forms;
 
@@ -16,6 +18,7 @@ namespace ExpenseTracker.Mobile.ViewModels
         private const int WeekDaysCount = 7;
         private readonly IDateTimeService dateTimeService;
         private readonly IViewModelsFactory viewModelsFactory;
+        private readonly IEventAggregator eventAggregator;
 
         private int selectedPosition;
         public int SelectedPosition
@@ -32,11 +35,12 @@ namespace ExpenseTracker.Mobile.ViewModels
 
         public CalendarControlViewModel(
             IDateTimeService dateTimeService, 
-            IViewModelsFactory viewModelsFactory)
+            IViewModelsFactory viewModelsFactory,
+            IEventAggregator eventAggregator)
         {
             this.dateTimeService = dateTimeService;
             this.viewModelsFactory = viewModelsFactory;
-
+            this.eventAggregator = eventAggregator;
             this.Initialize();
         }       
 
@@ -67,6 +71,8 @@ namespace ExpenseTracker.Mobile.ViewModels
         private void OnSelectedDateChanged(object sender, DateTime e)
         {
             this.Month.Text = e.GetMonth();
+
+            this.eventAggregator.GetEvent<DateSelectedEvent>().Publish(e);
         }
 
         private void OnPositonSelected(object obj)

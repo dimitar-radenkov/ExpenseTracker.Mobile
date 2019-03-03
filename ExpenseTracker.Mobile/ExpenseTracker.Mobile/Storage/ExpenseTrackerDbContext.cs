@@ -11,6 +11,11 @@ namespace ExpenseTracker.Mobile.Storage
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<Category> Categories { get; set; }
 
+        public ExpenseTrackerDbContext()
+        {
+            this.Database.EnsureCreated();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var dbpathService = DependencyService.Get<IDbPath>();

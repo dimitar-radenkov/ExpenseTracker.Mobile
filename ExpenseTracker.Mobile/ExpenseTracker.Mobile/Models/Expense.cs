@@ -8,6 +8,7 @@ namespace ExpenseTracker.Mobile.Models
         public string Description { get; set; }
         public decimal Amount { get; set; }
         public DateTime CreationDate { get; set; }
+        public DateTime ExecutionDate { get; set; }
         public string ImageUrl { get; set; }
         public int CategoryId { get; set; }
     }

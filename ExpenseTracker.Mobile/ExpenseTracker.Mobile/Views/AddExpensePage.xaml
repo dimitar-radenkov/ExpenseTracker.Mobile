@@ -6,6 +6,7 @@
              x:Class="ExpenseTracker.Mobile.Views.AddExpensePage">
     <ContentPage.Content>
         <StackLayout>
+            <DatePicker Date="{Binding SelectedDate.DateTime}" />
             <Entry Placeholder="Description" Keyboard="Text" Text="{Binding Description.Text}"></Entry>
             <Entry Placeholder="Amount" Keyboard="Numeric" Text="{Binding Amount.Text, Mode=TwoWay}"></Entry>
             <Picker ItemsSource="{Binding CategoriesList.Items}" 

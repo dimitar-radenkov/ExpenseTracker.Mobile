@@ -16,13 +16,13 @@ namespace ExpenseTracker.Mobile.Tests
             //arrange
             var dateTimeService = new Mock<IDateTimeService>();
             dateTimeService.SetupSequence(x => x.UtcNow)
-                .Returns(new DateTime(2019, 3, 4)) //sunday
+                .Returns(new DateTime(2019, 3, 4)) //monday
                 .Returns(new DateTime(2019, 3, 5))
                 .Returns(new DateTime(2019, 3, 6))
                 .Returns(new DateTime(2019, 3, 7))
                 .Returns(new DateTime(2019, 3, 8))
                 .Returns(new DateTime(2019, 3, 9))
-                .Returns(new DateTime(2019, 3, 10)); //monday
+                .Returns(new DateTime(2019, 3, 10)); //sunday
 
 
             for (int i = 0; i < 7; ++i)

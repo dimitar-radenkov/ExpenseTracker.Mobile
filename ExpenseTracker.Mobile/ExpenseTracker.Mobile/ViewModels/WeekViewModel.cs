@@ -40,19 +40,13 @@ namespace ExpenseTracker.Mobile.ViewModels
                 this.days[date.DayOfWeek].Text = date.Day.ToString();
                 this.days[date.DayOfWeek].DateTime = date;
 
-                //today
-                if (date.Day == this.dateTimeService.UtcNow.Day &&
-                    date.Month == this.dateTimeService.UtcNow.Month && 
-                    date.Year == this.dateTimeService.UtcNow.Year)
-                {
-                    this.days[date.DayOfWeek].Background = Color.Blue;
-                    this.days[date.DayOfWeek].TextColor = Color.White;
-                }
             }
 
             this.StartDate = dates.First();
             this.EndDate = dates.Last();
         }
+
+        public DateUI GetDay(DayOfWeek dow) => this.days[dow];
 
         private void Initialize()
         {

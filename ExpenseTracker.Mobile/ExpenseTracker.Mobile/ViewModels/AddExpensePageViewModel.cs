@@ -44,7 +44,7 @@ namespace ExpenseTracker.Mobile.ViewModels
 
         private void Initialize()
         {
-            this.SelectedDate = new DateUI();
+            this.SelectedDate = new DateUI() { DateTime = this.dateTimeService.UtcNow };
             this.Description = new TextUI();
 
             this.Amount = new TextUI();
@@ -64,7 +64,7 @@ namespace ExpenseTracker.Mobile.ViewModels
                 Description = this.Description.Text,
                 Amount = decimal.Parse(this.Amount.Text),
                 CreationDate = this.dateTimeService.UtcNow,
-                ExecutionDate = this.dateTimeService.UtcNow,
+                ExecutionDate = this.SelectedDate.DateTime,
                 CategoryId = this.CategoriesList.SelectedItem.Id,
             };
 

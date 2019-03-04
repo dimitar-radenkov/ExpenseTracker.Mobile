@@ -67,7 +67,7 @@ namespace ExpenseTracker.Mobile.ViewModels
         private async Task RefreshAsync(DateTime dateTime)
         {
             var expenses = await this.db.Expenses.AsNoTracking()
-                .Where(x => x.CreationDate.Date == dateTime.Date)
+                .Where(x => x.ExecutionDate.Date == dateTime.Date)
                 .ToListAsync();
 
             expenses.ForEach(x => x.ImageUrl = this.categoriesService.GetUrl(x.CategoryId));

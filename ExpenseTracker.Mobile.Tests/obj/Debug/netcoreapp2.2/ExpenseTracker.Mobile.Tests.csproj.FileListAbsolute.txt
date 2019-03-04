@@ -1,0 +1,17 @@
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\bin\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.deps.json
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\bin\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.runtimeconfig.json
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\bin\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.runtimeconfig.dev.json
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\bin\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.dll
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\obj\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.csprojAssemblyReference.cache
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\obj\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.csproj.CoreCompileInputs.cache
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\obj\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.AssemblyInfoInputs.cache
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\obj\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.AssemblyInfo.cs
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\bin\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.pdb
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\bin\Debug\netcoreapp2.2\ExpenseTracker.Mobile.dll
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\bin\Debug\netcoreapp2.2\ExpenseTracker.Mobile.pdb
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\obj\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.csproj.CopyComplete
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\obj\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.dll
+D:\Git\mitko100\ExpenseTracker.Mobile\ExpenseTracker.Mobile.Tests\obj\Debug\netcoreapp2.2\ExpenseTracker.Mobile.Tests.pdb

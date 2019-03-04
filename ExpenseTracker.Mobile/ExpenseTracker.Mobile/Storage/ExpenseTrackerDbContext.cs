@@ -14,6 +14,7 @@ namespace ExpenseTracker.Mobile.Storage
         public ExpenseTrackerDbContext()
         {
             this.Database.EnsureCreated();
+            this.Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

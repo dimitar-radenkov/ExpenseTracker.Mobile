@@ -22,9 +22,19 @@
     <ContentView.Content>
 
         <StackLayout>
-            <Label HorizontalTextAlignment="Center"
-                   HorizontalOptions="Center" 
-                   Text="{Binding Month.Text}" FontSize="12"></Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="1" HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                       Text="{Binding Month.Text}" FontSize="12" Margin="2"></Label>
+                <ImageButton Grid.Column="2" Source="today.png" 
+                             WidthRequest="25" HorizontalOptions="End" Margin="2"
+                             Command="{Binding TodayButton.Command}"></ImageButton>
+            </Grid>
 
             <controls:CarouselViewControl Orientation="Horizontal" InterPageSpacing="10" HeightRequest="35"
                                           Position="{Binding SelectedPosition}"

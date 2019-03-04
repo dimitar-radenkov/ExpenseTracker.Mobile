@@ -6,6 +6,7 @@ using ExpenseTracker.Mobile.Events;
 using ExpenseTracker.Mobile.Extensions;
 using ExpenseTracker.Mobile.Factories;
 using ExpenseTracker.Mobile.Services;
+using ExpenseTracker.Mobile.Utils;
 using ExpenseTracker.Mobile.ViewModels.Helpers;
 using Prism.Events;
 using Prism.Mvvm;
@@ -29,6 +30,8 @@ namespace ExpenseTracker.Mobile.ViewModels
 
         public TextUI Month { get; set; }
 
+        public ButtonUI TodayButton { get; set; }
+
         public CollectionUI<WeekViewModel> Weeks { get; set; }
 
         public ICommand PositionSelectedCommand { get; set; }
@@ -47,8 +50,9 @@ namespace ExpenseTracker.Mobile.ViewModels
         private void Initialize()
         {
             this.Month = new TextUI() { Text = this.dateTimeService.UtcNow.GetMonth()  };
+            this.TodayButton = new ButtonUI(new Command(this.OnTodayButtonClicked));
 
-            var weekDates = this.GetCurrentWeek();
+            var weekDates = DateTimeUtils.GetCurrentWeek(this.dateTimeService);
 
             var prevWeek = this.viewModelsFactory.Create(weekDates.Select(x => x.AddDays(-WeekDaysCount)).ToList());
             prevWeek.SelectedDateChanged += this.OnSelectedDateChanged;
@@ -66,6 +70,19 @@ namespace ExpenseTracker.Mobile.ViewModels
 
             this.SelectedPosition = 1;
             this.PositionSelectedCommand = new Command(this.OnPositonSelected);
+        }
+
+        private void OnTodayButtonClicked(object obj)
+        {
+            var today = this.dateTimeService.UtcNow;
+            var week = this.Weeks.Items
+                .Where(x => x.StartDate <= today && today <= x.EndDate)
+                .FirstOrDefault();
+
+            var index = this.Weeks.Items.IndexOf(week);
+            this.SelectedPosition = index;
+
+            week.DayClickedCommand.Execute(week.GetDay(today.DayOfWeek));
         }
 
         private void OnSelectedDateChanged(object sender, DateTime e)
@@ -88,7 +105,6 @@ namespace ExpenseTracker.Mobile.ViewModels
 
                 var weekVM = this.viewModelsFactory.Create(prevWeek);
                 weekVM.SelectedDateChanged += this.OnSelectedDateChanged;
-                weekVM.DayClickedCommand.Execute(weekVM.Mon);
 
                 this.Weeks.Items.Insert(0, weekVM);
             }
@@ -103,36 +119,9 @@ namespace ExpenseTracker.Mobile.ViewModels
 
                 var weekVM = this.viewModelsFactory.Create(prevWeek);
                 weekVM.SelectedDateChanged += this.OnSelectedDateChanged;
-                weekVM.DayClickedCommand.Execute(weekVM.Mon);
 
                 this.Weeks.Items.Add(weekVM);
             }
-        }
-
-        private IEnumerable<DateTime> GetCurrentWeek()
-        {
-            var weekDays = new SortedSet<DateTime>();
-            var today = this.dateTimeService.UtcNow;
-
-            weekDays.Add(today);
-
-            //get prev days till the begining of the week
-            DateTime prevDate = today.AddDays(-1);
-            while (prevDate.DayOfWeek > DayOfWeek.Sunday)
-            {
-                weekDays.Add(prevDate);
-                prevDate = prevDate.AddDays(-1);
-            }
-
-            //get next days till the end of week
-            DateTime nextDate = today.AddDays(1);
-            while (nextDate.DayOfWeek < DayOfWeek.Sunday)
-            {
-                weekDays.Add(nextDate);
-                nextDate = nextDate.AddDays(1);
-            }
-
-            return weekDays;
         }
     }
 }
